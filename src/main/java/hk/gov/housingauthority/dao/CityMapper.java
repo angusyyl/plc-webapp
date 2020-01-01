@@ -2,19 +2,28 @@ package hk.gov.housingauthority.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import hk.gov.housingauthority.entity.City;
-import hk.gov.housingauthority.util.MyBatisUtil;
 
-@Repository
-public class CityMapper {
-	public List<City> getAllCities() {
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		List<City> cityList = session.selectList("getAllCities");
-		session.commit();
-		session.close();
-		return cityList;
-	}
+@Mapper
+public interface CityMapper {
+	
+//	@Autowired
+//	SqlSessionFactory factory;
+
+//	SqlSessionFactory factory = MyBatisUtil.getSqlSessionFactory();
+	
+//	public List<City> getAllCities() {
+//		SqlSession session = factory.openSession();
+//		List<City> cityList = session.selectList("getAllCities");
+//		System.out.println(Arrays.toString(cityList.toArray()));
+//		session.commit();
+//		session.close();
+//		return cityList;
+//	}
+	
+	@Select("SELECT * FROM world.city")
+	List<City> selectAllCities();
 }

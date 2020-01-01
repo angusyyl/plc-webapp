@@ -6,10 +6,10 @@ import hk.gov.housingauthority.dao.CityMapper;
 
 public class ConnectionTest {
 	
-	@Test
-	public void getCities() {
-		CityMapper mapper = new CityMapper();
-		System.out.println(mapper.getAllCities());
-		System.out.println(mapper.getAllCities().size());
-	}
+//	@Test
+//	public void getCities() {
+//		CityMapper mapper = new CityMapper();
+//		System.out.println(mapper.getAllCities());
+//		System.out.println(mapper.getAllCities().size());
+//	}
 }

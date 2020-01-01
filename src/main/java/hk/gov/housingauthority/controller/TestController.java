@@ -1,14 +1,31 @@
 package hk.gov.housingauthority.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-@RestController
-@RequestMapping("/rest/api/v1")
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import hk.gov.housingauthority.dao.CityMapper;
+import hk.gov.housingauthority.entity.City;
+
+@Controller
 public class TestController {
-	@GetMapping("/test")
+
+	@Autowired
+	SqlSessionFactory factory;
+
+	@GetMapping(value = "/test")
 	public String test() {
-		return "Hello Test";
+		System.out.println("test called");
+		try (SqlSession session = factory.openSession()) {
+			CityMapper mapper = session.getMapper(CityMapper.class);
+			List<City> cities = mapper.selectAllCities();
+			System.out.println(cities.size());
+		}
+
+		return "home";
 	}
 }

@@ -1,17 +1,21 @@
 package hk.gov.housingauthority.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+@Configuration
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		System.out.println("getRootConfigClasses");
+		return new Class<?>[] {AppConfig.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {AppConfig.class};
+		System.out.println("getServletConfigClasses");
+		return new Class<?>[] {WebConfig.class};
 	}
 
 	@Override
