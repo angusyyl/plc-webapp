@@ -19,7 +19,7 @@ public class TestController {
 
 	@GetMapping(value = "/test")
 	public String test() {
-		System.out.println("test called");
+		System.out.println("why why why");
 		try (SqlSession session = factory.openSession()) {
 			CityMapper mapper = session.getMapper(CityMapper.class);
 			List<City> cities = mapper.selectAllCities();

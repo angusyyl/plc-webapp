@@ -20,7 +20,7 @@ public class AppConfig {
 	private Environment env;
 	
 	private Properties dataSourceProperties;
-	
+
 	@Bean
 	public SqlSessionFactory getSessionFactory() {
 		System.out.println("ABC");

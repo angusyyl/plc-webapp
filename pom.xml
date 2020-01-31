@@ -1,11 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hk.gov.housingauthority</groupId>
 	<artifactId>plc-webapp</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>plc-webapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
@@ -13,7 +11,6 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<wildfly.home>D:\jboss-eap-7.2</wildfly.home>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -63,9 +60,9 @@
 	</dependencies>
 
 	<build>
-		<finalName>plc-webapp</finalName>
+		<finalName>${project.artifactId}</finalName>
 	</build>
-
+	
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -76,12 +73,23 @@
 				</property>
 			</activation>
 			<build>
-				<finalName>plc-webapp</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
 						<version>2.1.0.Beta1</version>
+						<configuration>
+							<id>jboss-eap7</id>
+							<force>true</force>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
